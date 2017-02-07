@@ -10,7 +10,7 @@ func main() {
 	_cmd := cmd.NewSimpleCmd(
 		"gitclone",
 		"A cli tool, git clone repository in the `go get` style.",
-		"0.0.2",
+		"0.1",
 	)
 	_cmd.AddFlagActions([]*cmd.FlagAction{
 		cmd.InitFlagAction,   // init
