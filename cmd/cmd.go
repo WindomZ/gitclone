@@ -38,10 +38,11 @@ func (cmd *Cmd) Run(arguments []string) error {
 		//println(fmt.Sprintf("%#v", arguments)) // log
 		cmd.app.Action = func(c *cli.Context) error {
 			for _, f := range cmd.flagActions {
-				if interrupt, err := f.Action(c, f); interrupt {
+				if interrupt, content, err := f.Action(c, f); interrupt {
 					if err != nil {
 						return errors.New(err.Error())
 					}
+					fmt.Println(content)
 					fmt.Println("Finish!")
 					return nil
 				}

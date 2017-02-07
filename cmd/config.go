@@ -8,12 +8,12 @@ var ConfigFlagAction = &FlagAction{
 		Usage: "Load configuration from `FILE`",
 	},
 	FlagName: "config",
-	Action: func(c *cli.Context, f *FlagAction) (bool, error) {
+	Action: func(c *cli.Context, f *FlagAction) (bool, string, error) {
 		value := c.String(f.FlagName)
 		if value == "" {
-			return false, nil
+			return false, "", nil
 		}
 		//println(fmt.Sprintf("config-value: %#v", value)) // log
-		return false, nil
+		return false, "", nil
 	},
 }

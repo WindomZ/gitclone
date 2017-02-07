@@ -1,46 +1,45 @@
 package cmd
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"os/exec"
 	"path"
 	"regexp"
+	"strings"
 
-	"bytes"
 	"github.com/urfave/cli"
 	"github.com/whilp/git-urls"
-	"strings"
 )
 
 var RootFlagAction = &FlagAction{
 	Flag:     nil,
 	FlagName: "",
-	Action: func(c *cli.Context, f *FlagAction) (bool, error) {
+	Action: func(c *cli.Context, f *FlagAction) (bool, string, error) {
 		if len(c.Args()) == 0 {
 			// print usage
-			return true, errors.New("No args!") // error
+			return true, "", errors.New("No args!") // error
 		}
 		repo := c.Args().Get(0)
 		if !ValidGitAddress(repo) {
-			return true, errors.New(fmt.Sprintf("repository '%v' does not exist", repo))
+			return true, "", errors.New(fmt.Sprintf("repository '%v' does not exist", repo))
 		}
 		u, err := giturls.Parse(repo)
 		if err != nil {
-			return true, err
+			return true, "", err
 		}
 		f_dir := u.Host + u.Path
 		if ExistFile(DEFAULT_DIR_NAME) {
 			f_dir = path.Join(DEFAULT_DIR_NAME, f_dir)
 		}
+		var out string
 		if ExistFile(path.Join(f_dir, ".git")) {
-			if _, err := execCommand("git", "pull", f_dir); err != nil {
-				return true, err
-			}
-		} else if _, err := execCommand("git", "clone", repo, f_dir); err != nil {
-			return true, err
+			out, err = execCommand("git", "pull", f_dir)
+		} else {
+			out, err = execCommand("git", "clone", repo, f_dir)
 		}
-		return true, nil
+		return true, out, err
 	},
 }
 

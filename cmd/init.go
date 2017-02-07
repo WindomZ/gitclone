@@ -13,15 +13,16 @@ var InitFlagAction = &FlagAction{
 		Usage: "Initialize the default directory",
 	},
 	FlagName: "init",
-	Action: func(c *cli.Context, f *FlagAction) (bool, error) {
+	Action: func(c *cli.Context, f *FlagAction) (bool, string, error) {
 		if !c.Bool(f.FlagName) {
-			return false, nil
+			return false, "", nil
 		}
 		if !ExistFile(DEFAULT_DIR_NAME) {
 			if err := os.Mkdir(DEFAULT_DIR_NAME, os.ModePerm); err != nil {
-				return true, err
+				return true, "", err
 			}
+			return true, "Create a default directory", nil
 		}
-		return true, nil
+		return true, "Directory already exists", nil
 	},
 }
