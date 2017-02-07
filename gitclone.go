@@ -13,8 +13,9 @@ func main() {
 		"0.0.2",
 	)
 	_cmd.AddFlagActions([]*cmd.FlagAction{
-		cmd.ConfigFlagAction, // config
 		cmd.InitFlagAction,   // init
+		cmd.ConfigFlagAction, // config
+		cmd.UrlFlagAction,    // url
 		cmd.RootFlagAction,   // root
 	})
 	_cmd.Run(os.Args)

@@ -18,29 +18,49 @@ var RootFlagAction = &FlagAction{
 	FlagName: "",
 	Action: func(c *cli.Context, f *FlagAction) (bool, string, error) {
 		if len(c.Args()) == 0 {
-			// print usage
-			return true, "", errors.New("No args!") // error
+			cli.ShowAppHelp(c)
+			return true, "", errors.New("Missing command arguments!")
 		}
-		repo := c.Args().Get(0)
-		if !ValidGitAddress(repo) {
-			return true, "", errors.New(fmt.Sprintf("repository '%v' does not exist", repo))
-		}
-		u, err := giturls.Parse(repo)
-		if err != nil {
-			return true, "", err
-		}
-		f_dir := u.Host + u.Path
-		if ExistFile(DEFAULT_DIR_NAME) {
-			f_dir = path.Join(DEFAULT_DIR_NAME, f_dir)
-		}
-		var out string
-		if ExistFile(path.Join(f_dir, ".git")) {
-			out, err = execCommand("git", "pull", f_dir)
-		} else {
-			out, err = execCommand("git", "clone", repo, f_dir)
-		}
-		return true, out, err
+		content, err := urlAction(c.Args().Get(0))
+		return true, content, err
 	},
+}
+
+var UrlFlagAction = &FlagAction{
+	Flag: cli.StringFlag{
+		Name:  "url, u",
+		Usage: "git repository `URL`",
+	},
+	FlagName: "url",
+	Action: func(c *cli.Context, f *FlagAction) (bool, string, error) {
+		value := c.String(f.FlagName)
+		if value == "" {
+			return false, "", nil
+		}
+		content, err := urlAction(value)
+		return true, content, err
+	},
+}
+
+func urlAction(repo string) (string, error) {
+	if !ValidGitAddress(repo) {
+		return "", errors.New(fmt.Sprintf("repository '%v' does not exist", repo))
+	}
+	u, err := giturls.Parse(repo)
+	if err != nil {
+		return "", err
+	}
+	f_dir := u.Host + u.Path
+	if ExistFile(DEFAULT_DIR_NAME) {
+		f_dir = path.Join(DEFAULT_DIR_NAME, f_dir)
+	}
+	var out string
+	if ExistFile(path.Join(f_dir, ".git")) {
+		out, err = execCommand("git", "pull", f_dir)
+	} else {
+		out, err = execCommand("git", "clone", repo, f_dir)
+	}
+	return out, err
 }
 
 func ValidGitAddress(repo string) bool {
@@ -55,7 +75,7 @@ func execCommand(commandName string, params ...string) (string, error) {
 
 	//println(strings.Join(cmd.Args, " "))
 
-	stdout, stderr, err := PipeCommand(cmd)
+	stdout, stderr, err := pipeCommand(cmd)
 	//out := strings.TrimSpace(strings.Join([]string{stdout, stderr}, ""))
 	out := strings.TrimSpace(stdout + stderr)
 	if err != nil {
@@ -69,7 +89,7 @@ func execCommand(commandName string, params ...string) (string, error) {
 	return out, nil
 }
 
-func PipeCommand(cmd *exec.Cmd) (string, string, error) {
+func pipeCommand(cmd *exec.Cmd) (string, string, error) {
 	var output bytes.Buffer
 	var stderr bytes.Buffer
 
