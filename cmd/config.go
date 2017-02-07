@@ -1,9 +1,6 @@
 package cmd
 
-import (
-	"fmt"
-	"github.com/urfave/cli"
-)
+import "github.com/urfave/cli"
 
 var ConfigFlagAction = &FlagAction{
 	Flag: cli.StringFlag{
@@ -16,7 +13,7 @@ var ConfigFlagAction = &FlagAction{
 		if value == "" {
 			return false, nil
 		}
-		println(fmt.Sprintf("config-value: %#v", value)) // log
+		//println(fmt.Sprintf("config-value: %#v", value)) // log
 		return false, nil
 	},
 }

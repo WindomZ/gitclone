@@ -35,14 +35,14 @@ func (cmd *Cmd) GetApp() *cli.App {
 
 func (cmd *Cmd) Run(arguments []string) error {
 	if arguments != nil && len(arguments) > 1 {
-		println(fmt.Sprintf("%#v", arguments)) // log
+		//println(fmt.Sprintf("%#v", arguments)) // log
 		cmd.app.Action = func(c *cli.Context) error {
 			for _, f := range cmd.flagActions {
 				if interrupt, err := f.Action(c, f); interrupt {
 					if err != nil {
 						return errors.New(err.Error())
 					}
-					fmt.Println("Success!")
+					fmt.Println("Finish!")
 					return nil
 				}
 			}

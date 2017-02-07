@@ -3,12 +3,14 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"os"
+	"os/exec"
 	"path"
 	"regexp"
 
+	"bytes"
 	"github.com/urfave/cli"
 	"github.com/whilp/git-urls"
+	"strings"
 )
 
 var RootFlagAction = &FlagAction{
@@ -31,14 +33,13 @@ var RootFlagAction = &FlagAction{
 		if ExistFile(DEFAULT_DIR_NAME) {
 			f_dir = path.Join(DEFAULT_DIR_NAME, f_dir)
 		}
-		//_, f_path := path.Split(f_dir)
-		//f_path = strings.Split(f_path, ".")[0]
-		if len(f_dir) != 0 /* && len(f_path) != 0*/ && !ExistFile(f_dir) {
-			if err := os.MkdirAll(f_dir, os.ModePerm); err != nil {
+		if ExistFile(path.Join(f_dir, ".git")) {
+			if _, err := execCommand("git", "pull", f_dir); err != nil {
 				return true, err
 			}
+		} else if _, err := execCommand("git", "clone", repo, f_dir); err != nil {
+			return true, err
 		}
-
 		return true, nil
 	},
 }
@@ -48,4 +49,37 @@ func ValidGitAddress(repo string) bool {
 		`((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)(\.git)(/)?`,
 		repo)
 	return matched && err == nil
+}
+
+func execCommand(commandName string, params ...string) (string, error) {
+	cmd := exec.Command(commandName, params...)
+
+	//println(strings.Join(cmd.Args, " "))
+
+	stdout, stderr, err := PipeCommand(cmd)
+	//out := strings.TrimSpace(strings.Join([]string{stdout, stderr}, ""))
+	out := strings.TrimSpace(stdout + stderr)
+	if err != nil {
+		return out, err
+	}
+
+	//println(fmt.Sprintf("out: %v", stdout))
+	//println(fmt.Sprintf("err: %v", stderr))
+	//println(fmt.Sprintf("sss: %v", out))
+
+	return out, nil
+}
+
+func PipeCommand(cmd *exec.Cmd) (string, string, error) {
+	var output bytes.Buffer
+	var stderr bytes.Buffer
+
+	cmd.Stdout, cmd.Stderr = &output, &stderr
+
+	if err := cmd.Start(); err != nil {
+		return output.String(), stderr.String(), err
+	}
+	cmd.Wait()
+
+	return output.String(), stderr.String(), nil
 }
