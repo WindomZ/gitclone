@@ -11,7 +11,7 @@ var ConfigFlagAction = &FlagAction{
 		Usage: "Load configuration from `FILE`",
 	},
 	FlagName: "config",
-	Action: func(c *cli.Context, f *FlagAction) (bool, *cli.ExitError) {
+	Action: func(c *cli.Context, f *FlagAction) (bool, error) {
 		value := c.String(f.FlagName)
 		if value == "" {
 			return false, nil

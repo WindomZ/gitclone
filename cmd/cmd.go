@@ -42,6 +42,7 @@ func (cmd *Cmd) Run(arguments []string) error {
 					if err != nil {
 						return errors.New(err.Error())
 					}
+					fmt.Println("Success!")
 					return nil
 				}
 			}
