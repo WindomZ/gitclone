@@ -24,4 +24,4 @@ _testmain.go
 *.prof
 
 .idea/
-git-clone-cli.iml
+*.iml
