@@ -50,6 +50,21 @@ gitclone -u https://github.com/WindomZ/gitclone.git
 
 So easy to use!
 
+Result:
+```
+|- .
+|- ..
+|- github.com
+|  - WindomZ
+|     - gitclone
+```
+
+## TODO
+
+- [ ] clone same as `git clone`
+- [ ] list prints a list of files in the current directory
+- [ ] mkdir create a default directory
+
 ## License
 
 The MIT License ([MIT](https://github.com/WindomZ/gitclone/blob/master/LICENSE))
