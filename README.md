@@ -52,4 +52,4 @@ So easy to use!
 
 ## License
 
-The MIT License ([MIT](https://github.com/WindomZ/gitclone/blob/master/README.md))
+The MIT License ([MIT](https://github.com/WindomZ/gitclone/blob/master/LICENSE))
