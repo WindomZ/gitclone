@@ -1,1 +1,1 @@
-# git-clone-cli
+# gitclone
