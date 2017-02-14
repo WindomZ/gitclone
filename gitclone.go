@@ -1,22 +1,22 @@
 package main
 
 import (
-	"os"
-
-	"github.com/WindomZ/gitclone/cmd"
+	"github.com/WindomZ/cli-mate"
+	"github.com/WindomZ/gitclone/gitclone"
 )
 
 func main() {
-	_cmd := cmd.NewSimpleCmd(
+	cmd := cli_mate.NewApp(
 		"gitclone",
 		"A cli tool, git clone repository in the `go get` style.",
-		"0.1",
+		"0.2",
 	)
-	_cmd.AddFlagActions([]*cmd.FlagAction{
-		cmd.InitFlagAction,   // init
-		cmd.ConfigFlagAction, // config
-		cmd.UrlFlagAction,    // url
-		cmd.RootFlagAction,   // root
+
+	cmd.Action = gitclone.RootAction
+
+	cmd.AddFlags([]cli_mate.Flag{
+		gitclone.UrlFlag, // url
 	})
-	_cmd.Run(os.Args)
+
+	cmd.RunOSArgs()
 }
