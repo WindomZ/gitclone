@@ -36,10 +36,11 @@ func rootAction(repo string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	f_dir := u.Host + u.Path
+	f_dir := strings.Replace(u.Host+u.Path, ".git", "", -1)
 	if ExistFile(DEFAULT_DIR_NAME) {
 		f_dir = path.Join(DEFAULT_DIR_NAME, f_dir)
 	}
+
 	var out string
 	if ExistFile(path.Join(f_dir, ".git")) {
 		out, err = execCommand("git", "pull", f_dir)
