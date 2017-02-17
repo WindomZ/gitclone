@@ -2,6 +2,15 @@
 
 A cli tool, git clone repository in the `go get` style.
 
+## Features
+
+- [x] git clone repository in the `go get` style
+- [ ] command: clone - same as `git clone`
+- [ ] command: list - prints a list of files in the current directory
+- [ ] command: mkdir - create a default directory
+- [ ] command: search - search repositories witch in current directory
+- [ ] command: import - `gitclone` a repository in the directory to current directory
+
 ## Installation
 
 To install cli, run:
@@ -10,7 +19,7 @@ $ go get github.com/WindomZ/gitclone
 ```
 
 Make sure your `PATH` includes the `$GOPATH/bin` directory,
-if not you can run:
+if NOT you can run:
 ```
 export PATH=$PATH:$GOPATH/bin
 ```
@@ -59,12 +68,6 @@ Result:
 |     - gitclone
 ```
 
-## TODO
-
-- [ ] clone same as `git clone`
-- [ ] list prints a list of files in the current directory
-- [ ] mkdir create a default directory
-
 ## License
 
-The MIT License ([MIT](https://github.com/WindomZ/gitclone/blob/master/LICENSE))
+The [MIT License](https://github.com/WindomZ/gitclone/blob/master/LICENSE)
