@@ -10,6 +10,7 @@ A cli tool, git clone repository in the `go get` style.
 - [ ] command: mkdir - create a default directory
 - [ ] command: search - search repositories witch in current directory
 - [ ] command: import - `gitclone` a repository in the directory to current directory
+- [ ] all commands and flags testing
 
 ## Installation
 
@@ -57,9 +58,7 @@ or
 gitclone -u https://github.com/WindomZ/gitclone.git
 ```
 
-So easy to use!
-
-Result:
+Finally, get the directory structure:
 ```
 |- .
 |- ..
