@@ -12,6 +12,7 @@ go:
 before_install:
   - go get github.com/WindomZ/cli-mate
   - go get github.com/whilp/git-urls
+  - go get github.com/stretchr/testify/assert
 
 install:
   - go install
