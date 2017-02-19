@@ -11,6 +11,7 @@ go:
 
 before_install:
   - go get github.com/WindomZ/cli-mate
+  - go get github.com/whilp/git-urls
 
 install:
   - go install
