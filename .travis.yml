@@ -1,0 +1,17 @@
+language: go
+
+sudo: false
+
+go:
+  - 1.4.2
+  - 1.5.x
+  - 1.6.x
+  - 1.7.x
+  - master
+
+before_script:
+  - go get -v github.com/WindomZ/cli-mate || true
+  - cd ./tests
+
+script:
+  - go test -v ./...
