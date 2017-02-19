@@ -9,8 +9,13 @@ go:
   - 1.7.x
   - master
 
+before_install:
+  - go get github.com/WindomZ/cli-mate
+
+install:
+  - go install
+
 before_script:
-  - go get -v github.com/WindomZ/cli-mate || true
   - cd ./tests
 
 script:
