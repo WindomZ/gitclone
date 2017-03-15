@@ -2,6 +2,9 @@
 [![Build Status](https://travis-ci.org/WindomZ/gitclone.svg?branch=master)](https://travis-ci.org/WindomZ/gitclone)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+![v0.2.0](https://img.shields.io/badge/version-v0.2.0-orange.svg)
+![status](https://img.shields.io/badge/status-beta-yellow.svg)
+
 A cli tool, git clone repository in the `go get` style.
 
 ## Features
