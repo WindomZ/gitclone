@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/WindomZ/cli-mate"
+	"github.com/WindomZ/go-commander"
 	"github.com/whilp/git-urls"
 	"os/exec"
 	"path"
@@ -12,19 +12,12 @@ import (
 	"strings"
 )
 
-const DEFAULT_DIR_NAME string = "GitClones"
-
-var RootAction cli_mate.CommandAction = func(c *cli_mate.Context) cli_mate.ExitCoder {
-	if len(c.Args()) == 0 {
-		c.ShowAppHelp()
-		//return cli_mate.NewExitStringError("Missing command arguments!")
-		return nil
-	}
-	content, err := rootAction(c.Args().Get(0))
+var RootAction = func(c commander.Context) error {
+	content, err := rootAction(c.GetString("<repo>"))
 	if err != nil {
-		return cli_mate.NewExitError(err)
+		return err
 	}
-	c.Println(content)
+	fmt.Println(content)
 	return nil
 }
 
@@ -37,9 +30,6 @@ func rootAction(repo string) (string, error) {
 		return "", err
 	}
 	f_dir := strings.Replace(u.Host+u.Path, ".git", "", -1)
-	if ExistFile(DEFAULT_DIR_NAME) {
-		f_dir = path.Join(DEFAULT_DIR_NAME, f_dir)
-	}
 
 	var out string
 	if ExistFile(path.Join(f_dir, ".git")) {

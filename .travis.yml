@@ -3,22 +3,19 @@ language: go
 sudo: false
 
 go:
-  - 1.4.2
+  - 1.4.x
   - 1.5.x
   - 1.6.x
   - 1.7.x
-  - master
+  - 1.8.x
 
 before_install:
-  - go get github.com/WindomZ/cli-mate
+  - go get github.com/WindomZ/go-commander
   - go get github.com/whilp/git-urls
-  - go get github.com/stretchr/testify/assert
+  - go get github.com/WindomZ/testify/assert
 
 install:
   - go install
-
-before_script:
-  - cd ./tests
 
 script:
   - go test -v ./...
