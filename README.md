@@ -9,13 +9,11 @@ A cli tool, git clone repository in the `go get` style.
 
 ## Features
 
-- [x] git clone repository in the `go get` style
-- [ ] command: clone - same as `git clone`
-- [ ] command: list - prints a list of files in the current directory
-- [ ] command: mkdir - create a default directory
-- [ ] command: search - search repositories witch in current directory
-- [ ] command: import - `gitclone` a repository in the directory to current directory
-- [ ] all commands and flags testing
+- [x] gitclone - git clone repository in the `go get` style
+- [ ] gitclone clone - same as `git clone`
+- [ ] gitclone list - prints a list of repositories witch in the current directory
+- [ ] gitclone search - search repositories witch in current directory
+- [ ] gitclone import - `gitclone` a repository from the directory to current directory
 
 ## Installation
 

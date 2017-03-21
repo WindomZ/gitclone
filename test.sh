@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-./install.sh
+go install
 
 if [ $? -ne 0 ]; then
     exit 0
