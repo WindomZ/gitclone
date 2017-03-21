@@ -31,22 +31,15 @@ export PATH=$PATH:$GOPATH/bin
 ## Usage
 
 ```bash
-NAME:
-   gitclone - A cli tool, git clone repository in the `go get` style.
+$ gitclone -h
 
-USAGE:
-   gitclone [global options] command [command options] [arguments...]
+A cli tool, git clone repository in the `go get` style.
 
-VERSION:
-   0.2
-
-COMMANDS:
-     help, h  Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   --url URL, -u URL, -- URL  git repository URL
-   --help, -h                 show help
-   --version, -v              print the version
+Usage:
+  gitclone <repo>
+  gitclone clone <repo>
+  gitclone -h | --help
+  gitclone --version
 ```
 
 ## Example
