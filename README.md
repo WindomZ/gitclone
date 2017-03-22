@@ -50,10 +50,6 @@ simply run:
 ```bash
 gitclone https://github.com/WindomZ/gitclone.git
 ```
-or
-```bash
-gitclone -u https://github.com/WindomZ/gitclone.git
-```
 
 Finally, get the directory structure:
 ```
