@@ -28,7 +28,7 @@ func main() {
 	commander.Program.
 		Command("list").
 		Description("prints a list of repositories witch in the current directory").
-		Action(gitclone.ListAction())
+		Action(gitclone.ListAction)
 
 	commander.Program.Parse()
 }

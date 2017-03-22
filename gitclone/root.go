@@ -13,6 +13,9 @@ import (
 )
 
 var RootAction = func(c commander.Context) error {
+	if c.Contain("clone") {
+		return nil
+	}
 	content, err := rootAction(c.GetString("<repo>"))
 	if err != nil {
 		return err
@@ -50,18 +53,12 @@ func ValidGitAddress(repo string) bool {
 func execCommand(commandName string, params ...string) (string, error) {
 	cmd := exec.Command(commandName, params...)
 
-	//println(strings.Join(cmd.Args, " "))
-
 	stdout, stderr, err := pipeCommand(cmd)
 	//out := strings.TrimSpace(strings.Join([]string{stdout, stderr}, ""))
 	out := strings.TrimSpace(stdout + stderr)
 	if err != nil {
 		return out, err
 	}
-
-	//println(fmt.Sprintf("out: %v", stdout))
-	//println(fmt.Sprintf("err: %v", stderr))
-	//println(fmt.Sprintf("sss: %v", out))
 
 	return out, nil
 }

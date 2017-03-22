@@ -1,5 +1,8 @@
 package gitclone
 
-var CloneAction = func() error {
-	return nil
+import "fmt"
+
+var CloneAction = func() {
+	fmt.Println("clone...")
+	return
 }
