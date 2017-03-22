@@ -18,6 +18,18 @@ func main() {
 		Description("prints a list of repositories witch in the current directory").
 		Action(gitclone.ListAction)
 
+	// gitclone search
+	commander.Program.
+		Command("search").
+		Description("search repositories witch in current directory").
+		Action(gitclone.SearchAction)
+
+	// gitclone link
+	commander.Program.
+		Command("link").
+		Description("`gitclone` a repository from the directory to current directory").
+		Action(gitclone.LinkAction)
+
 	// gitclone
 	commander.Program.
 		LineArgument("<repo>").
