@@ -13,9 +13,6 @@ import (
 )
 
 var RootAction = func(c commander.Context) error {
-	if c.Contain("clone") {
-		return nil
-	}
 	content, err := rootAction(c.GetString("<repo>"))
 	if err != nil {
 		return err

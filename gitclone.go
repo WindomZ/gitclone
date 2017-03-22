@@ -12,23 +12,17 @@ func main() {
 		Description("A cli tool, git clone repository in the `go get` style.").
 		Version("0.3.0")
 
-	// gitclone
-	commander.Program.
-		LineArgument("<repo>").
-		Description("git clone repository in the 'go get' style").
-		Action(gitclone.RootAction)
-
-	// gitclone clone <repo>
-	commander.Program.
-		Command("clone <repo>").
-		Description("same as 'git clone'").
-		Action(gitclone.CloneAction)
-
 	// gitclone list
 	commander.Program.
 		Command("list").
 		Description("prints a list of repositories witch in the current directory").
 		Action(gitclone.ListAction)
+
+	// gitclone
+	commander.Program.
+		LineArgument("<repo>").
+		Description("git clone repository in the 'go get' style").
+		Action(gitclone.RootAction)
 
 	commander.Program.Parse()
 }
