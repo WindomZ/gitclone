@@ -10,17 +10,18 @@ func main() {
 	commander.Program.
 		Command("gitclone").
 		Description("A cli tool, git clone repository in the `go get` style.").
-		Version("0.3.0")
+		Version("0.3.1")
 
 	// gitclone list
 	commander.Program.
 		Command("list").
+		Aliases([]string{"ls"}).
 		Description("prints a list of repositories witch in the current directory").
 		Action(gitclone.ListAction)
 
 	// gitclone search
 	commander.Program.
-		Command("search").
+		Command("search <key>").
 		Description("search repositories witch in current directory").
 		Action(gitclone.SearchAction)
 
@@ -32,7 +33,7 @@ func main() {
 
 	// gitclone
 	commander.Program.
-		LineArgument("<repo>").
+		Command("<repo>").
 		Description("git clone repository in the 'go get' style").
 		Action(gitclone.RootAction)
 

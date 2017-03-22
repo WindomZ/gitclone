@@ -15,11 +15,11 @@ func subString(s string, pos, length int) string {
 	return string(runes[pos:l])
 }
 
-func GetParentDirectory(dir string) string {
+func getParentDirectory(dir string) string {
 	return subString(dir, 0, strings.LastIndex(dir, "/"))
 }
 
-func GetCurrentDirectory() string {
+func getCurrentDirectory() string {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		return ""
@@ -30,4 +30,18 @@ func GetCurrentDirectory() string {
 func ExistFile(filename string) bool {
 	_, err := os.Stat(filename)
 	return err == nil || os.IsExist(err)
+}
+
+func getGitRepoDirList(path string) (list []string) {
+	filepath.Walk(path,
+		func(path string, f os.FileInfo, err error) error {
+			if f == nil || err != nil {
+				return err
+			} else if f.IsDir() &&
+				f.Name() == ".git" {
+				list = append(list, getParentDirectory(path))
+			}
+			return nil
+		})
+	return
 }
