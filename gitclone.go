@@ -27,7 +27,7 @@ func main() {
 
 	// gitclone link
 	commander.Program.
-		Command("link").
+		Command("link <filepath>").
 		Description("`gitclone` a repository from the directory to current directory").
 		Action(gitclone.LinkAction)
 

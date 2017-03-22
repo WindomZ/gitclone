@@ -1,6 +1,7 @@
 package gitclone
 
 import (
+	"github.com/btcsuite/goleveldb/leveldb/errors"
 	"os"
 	"path/filepath"
 	"strings"
@@ -27,13 +28,13 @@ func getCurrentDirectory() string {
 	return strings.Replace(dir, "\\", "/", -1)
 }
 
-func ExistFile(filename string) bool {
-	_, err := os.Stat(filename)
+func existFile(filePath string) bool {
+	_, err := os.Stat(filePath)
 	return err == nil || os.IsExist(err)
 }
 
-func getGitRepoDirList(path string) (list []string) {
-	filepath.Walk(path,
+func getGitRepoDirList(filePath string) (list []string) {
+	filepath.Walk(filePath,
 		func(path string, f os.FileInfo, err error) error {
 			if f == nil || err != nil {
 				return err
@@ -44,4 +45,29 @@ func getGitRepoDirList(path string) (list []string) {
 			return nil
 		})
 	return
+}
+
+func existGitRepoDir(filePath string) (r bool) {
+	filepath.Walk(filePath,
+		func(path string, f os.FileInfo, err error) error {
+			if f == nil || err != nil {
+				return err
+			} else if f.IsDir() &&
+				f.Name() == ".git" {
+				r = true
+				return errors.New("Found!")
+			}
+			return nil
+		})
+	return
+}
+
+func isGitRepoDir(filePath string) bool {
+	f, err := os.Stat(filePath)
+	if f == nil {
+	} else if err != nil && !os.IsExist(err) {
+	} else if f.IsDir() {
+		return existGitRepoDir(f.Name())
+	}
+	return false
 }

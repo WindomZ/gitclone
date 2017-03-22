@@ -15,6 +15,7 @@ import (
 var RootAction = func(c commander.Context) error {
 	content, err := rootAction(c.GetString("<repo>"))
 	if err != nil {
+		commander.Program.ShowHelpMessage()
 		return err
 	}
 	fmt.Println(content)
@@ -32,7 +33,7 @@ func rootAction(repo string) (string, error) {
 	f_dir := strings.Replace(u.Host+u.Path, ".git", "", -1)
 
 	var out string
-	if ExistFile(path.Join(f_dir, ".git")) {
+	if existFile(path.Join(f_dir, ".git")) {
 		out, err = execCommand("git", "pull", f_dir)
 	} else {
 		out, err = execCommand("git", "clone", repo, f_dir)

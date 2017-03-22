@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/WindomZ/gitclone/gitclone"
 	"github.com/WindomZ/testify/assert"
+	"os"
 	"os/exec"
 	"path"
 	"testing"
@@ -13,8 +13,10 @@ func TestGitClone_Root(t *testing.T) {
 	if err := cmd.Run(); err != nil {
 		assert.Error(t, err)
 	}
+
+	_, err := os.Stat(path.Join("github.com", "WindomZ", "gitclone", ".git"))
 	assert.Equal(t,
-		gitclone.ExistFile(path.Join("github.com", "WindomZ", "gitclone", ".git")),
+		err == nil || os.IsExist(err),
 		true,
 		"No file exists: './GitClones/github.com/WindomZ/gitclone/.git'",
 	)
