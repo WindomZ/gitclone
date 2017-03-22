@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/WindomZ/gitclone.svg?branch=master)](https://travis-ci.org/WindomZ/gitclone)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-![v0.3.1](https://img.shields.io/badge/version-v0.3.1-orange.svg)
+![v0.4.0](https://img.shields.io/badge/version-v0.4.0-orange.svg)
 ![status](https://img.shields.io/badge/status-beta-yellow.svg)
 
 A cli tool, git clone repository in the `go get` style.
@@ -10,7 +10,7 @@ A cli tool, git clone repository in the `go get` style.
 ## Features
 
 - [x] gitclone - git clone repository in the `go get` style
-- [ ] gitclone list - prints a list of repositories witch in the current directory
+- [x] gitclone list - prints a list of repositories witch in the current directory
 - [ ] gitclone search - search repositories witch in current directory
 - [ ] gitclone link - `gitclone` a repository from the directory to current directory
 
@@ -35,8 +35,8 @@ $ gitclone -h
   A cli tool, git clone repository in the `go get` style.
 
   Usage:
-    gitclone list
-    gitclone search
+    gitclone (list|ls)
+    gitclone search <key>
     gitclone link
     gitclone <repo>
     gitclone -h | --help
