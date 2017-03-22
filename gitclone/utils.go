@@ -1,7 +1,7 @@
 package gitclone
 
 import (
-	"github.com/btcsuite/goleveldb/leveldb/errors"
+	"errors"
 	"os"
 	"path/filepath"
 	"strings"
