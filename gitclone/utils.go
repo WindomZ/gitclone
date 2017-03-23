@@ -1,8 +1,8 @@
 package gitclone
 
 import (
-	"errors"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 )
@@ -47,27 +47,12 @@ func getGitRepoDirList(filePath string) (list []string) {
 	return
 }
 
-func existGitRepoDir(filePath string) (r bool) {
-	filepath.Walk(filePath,
-		func(path string, f os.FileInfo, err error) error {
-			if f == nil || err != nil {
-				return err
-			} else if f.IsDir() &&
-				f.Name() == ".git" {
-				r = true
-				return errors.New("Found!")
-			}
-			return nil
-		})
-	return
-}
-
 func isGitRepoDir(filePath string) bool {
 	f, err := os.Stat(filePath)
 	if f == nil {
 	} else if err != nil && !os.IsExist(err) {
 	} else if f.IsDir() {
-		return existGitRepoDir(f.Name())
+		return existFile(path.Join(filePath, ".git"))
 	}
 	return false
 }

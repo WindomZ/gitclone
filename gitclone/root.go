@@ -1,12 +1,10 @@
 package gitclone
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
 	"github.com/WindomZ/go-commander"
 	"github.com/whilp/git-urls"
-	"os/exec"
 	"path"
 	"regexp"
 	"strings"
@@ -34,7 +32,9 @@ func rootAction(repo string) (string, error) {
 
 	var out string
 	if existFile(path.Join(f_dir, ".git")) {
-		out, err = execCommand("git", "pull", f_dir)
+		if err = execChdir(f_dir); err == nil {
+			out, err = execCommand("git", "pull")
+		}
 	} else {
 		out, err = execCommand("git", "clone", repo, f_dir)
 	}
@@ -46,31 +46,4 @@ func ValidGitAddress(repo string) bool {
 		`((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)(\.git)(/)?`,
 		repo)
 	return matched && err == nil
-}
-
-func execCommand(commandName string, params ...string) (string, error) {
-	cmd := exec.Command(commandName, params...)
-
-	stdout, stderr, err := pipeCommand(cmd)
-	//out := strings.TrimSpace(strings.Join([]string{stdout, stderr}, ""))
-	out := strings.TrimSpace(stdout + stderr)
-	if err != nil {
-		return out, err
-	}
-
-	return out, nil
-}
-
-func pipeCommand(cmd *exec.Cmd) (string, string, error) {
-	var output bytes.Buffer
-	var stderr bytes.Buffer
-
-	cmd.Stdout, cmd.Stderr = &output, &stderr
-
-	if err := cmd.Start(); err != nil {
-		return output.String(), stderr.String(), err
-	}
-	cmd.Wait()
-
-	return output.String(), stderr.String(), nil
 }
