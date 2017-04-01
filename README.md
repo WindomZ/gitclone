@@ -1,6 +1,6 @@
 # gitclone
 [![Build Status](https://travis-ci.org/WindomZ/gitclone.svg?branch=master)](https://travis-ci.org/WindomZ/gitclone)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ![v0.6.0](https://img.shields.io/badge/version-v0.6.0-yellow.svg)
 ![status](https://img.shields.io/badge/status-beta-yellow.svg)
