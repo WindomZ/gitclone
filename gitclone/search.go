@@ -7,7 +7,7 @@ import (
 )
 
 var SearchAction = func(c commander.Context) error {
-	repo := strings.ToLower(c.GetString("<key>"))
+	repo := strings.ToLower(c.MustString("<key>"))
 
 	dirs := getGitRepoDirList(getCurrentDirectory())
 
