@@ -11,7 +11,7 @@ import (
 )
 
 var RootAction = func(c commander.Context) error {
-	content, err := rootAction(c.GetString("<repo>"))
+	content, err := rootAction(c.MustString("<repo>"))
 	if err != nil {
 		commander.Program.ShowHelpMessage()
 		return err

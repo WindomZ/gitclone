@@ -7,7 +7,7 @@ import (
 )
 
 var LinkAction = func(c commander.Context) error {
-	filepath := c.GetString("<filepath>")
+	filepath := c.MustString("<filepath>")
 	if !isGitRepoDir(filepath) {
 		fmt.Println("Not found any git repository!")
 		return nil
