@@ -13,9 +13,11 @@ before_install:
   - go get github.com/WindomZ/go-commander
   - go get github.com/whilp/git-urls
   - go get github.com/WindomZ/testify/assert
+  - go get github.com/mattn/goveralls
 
 install:
   - go install
 
 script:
+  - $HOME/gopath/bin/goveralls -service=travis-ci
   - go test -v ./...
