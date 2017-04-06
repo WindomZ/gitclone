@@ -1,0 +1,10 @@
+package: github.com/WindomZ/gitclone
+import:
+- package: github.com/WindomZ/go-commander
+  version: ^0.17.0
+- package: github.com/whilp/git-urls
+testImport:
+- package: github.com/WindomZ/testify
+  version: ^1.1.4
+  subpackages:
+  - assert

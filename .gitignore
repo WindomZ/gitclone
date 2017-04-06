@@ -26,4 +26,6 @@ _testmain.go
 .idea/
 *.iml
 
+vendor/
+
 github.com/

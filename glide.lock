@@ -1,0 +1,22 @@
+hash: 32c92f8e517e9d448bc3ce8e322a88a71071bad367980f7b76522f7a82e19327
+updated: 2017-04-06T14:25:32.236905705+08:00
+imports:
+- name: github.com/docopt/docopt-go
+  version: 784ddc588536785e7299f7272f39101f7faccc3f
+- name: github.com/whilp/git-urls
+  version: 31bac0d230fa29f36ed1b3279c2343752e7196c0
+- name: github.com/WindomZ/go-commander
+  version: 6717061f1c4c108218c6e2e58bf77a7e2df1c61c
+testImports:
+- name: github.com/davecgh/go-spew
+  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
+  subpackages:
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
+- name: github.com/WindomZ/testify
+  version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
+  subpackages:
+  - assert
