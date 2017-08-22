@@ -2,10 +2,12 @@ package gitclone
 
 import (
 	"fmt"
-	"github.com/WindomZ/go-commander"
 	"strings"
+
+	"github.com/WindomZ/go-commander"
 )
 
+// SearchAction the command action 'search' implementation
 var SearchAction = func(c commander.Context) error {
 	repo := strings.ToLower(c.MustString("<key>"))
 

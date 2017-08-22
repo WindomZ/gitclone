@@ -4,8 +4,16 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
+
+func validGitAddress(repo string) bool {
+	matched, err := regexp.MatchString(
+		`((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)(\.git)(/)?`,
+		repo)
+	return matched && err == nil
+}
 
 func subString(s string, pos, length int) string {
 	runes := []rune(s)

@@ -2,6 +2,7 @@ package gitclone
 
 import "fmt"
 
+// ListAction the command action 'list|ls' implementation
 var ListAction = func() error {
 	dirs := getGitRepoDirList(getCurrentDirectory())
 

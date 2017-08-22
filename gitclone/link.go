@@ -2,10 +2,12 @@ package gitclone
 
 import (
 	"fmt"
-	"github.com/WindomZ/go-commander"
 	"path"
+
+	"github.com/WindomZ/go-commander"
 )
 
+// LinkAction the command action 'link' implementation
 var LinkAction = func(c commander.Context) error {
 	filepath := c.MustString("<filepath>")
 	if !isGitRepoDir(filepath) {

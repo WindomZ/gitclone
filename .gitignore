@@ -23,7 +23,10 @@ _testmain.go
 *.test
 *.prof
 
-.idea/
+# IntelliJ project files
+.idea
 *.iml
+out
+gen
 
 github.com/

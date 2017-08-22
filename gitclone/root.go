@@ -3,13 +3,14 @@ package gitclone
 import (
 	"errors"
 	"fmt"
+	"path"
+	"strings"
+
 	"github.com/WindomZ/go-commander"
 	"github.com/whilp/git-urls"
-	"path"
-	"regexp"
-	"strings"
 )
 
+// RootAction the root command action implementation
 var RootAction = func(c commander.Context) error {
 	content, err := rootAction(c.MustString("<repo>"))
 	if err != nil {
@@ -21,7 +22,7 @@ var RootAction = func(c commander.Context) error {
 }
 
 func rootAction(repo string) (string, error) {
-	if !ValidGitAddress(repo) {
+	if !validGitAddress(repo) {
 		return "", errors.New(fmt.Sprintf("repository '%v' does not exist", repo))
 	}
 	u, err := giturls.Parse(repo)
@@ -39,11 +40,4 @@ func rootAction(repo string) (string, error) {
 		out, err = execCommand("git", "clone", repo, f_dir)
 	}
 	return out, err
-}
-
-func ValidGitAddress(repo string) bool {
-	matched, err := regexp.MatchString(
-		`((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)(\.git)(/)?`,
-		repo)
-	return matched && err == nil
 }
