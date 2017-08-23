@@ -4,10 +4,10 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/WindomZ/gitclone)](https://goreportcard.com/report/github.com/WindomZ/gitclone)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
+> A cli tool, git clone repository in the `go get` style.
+
 ![v0.7.0](https://img.shields.io/badge/version-v0.7.0-brightgreen.svg)
 ![status](https://img.shields.io/badge/status-beta-brightgreen.svg)
-
-> A cli tool, git clone repository in the `go get` style.
 
 ## Features
 
@@ -81,6 +81,18 @@ then get the directory structure:
 |- WindomZ
 |  - gitclone
 ```
+
+## PowerBy
+[go-commander](https://github.com/WindomZ/go-commander) - The solution for building command shell programs
+
+## Related
+[WindomZ/gitget](https://github.com/WindomZ/gitget) - Written in Node.js
+
+## Contributing
+Welcome to pull requests, report bugs, suggest ideas and discuss **gitclone**, 
+i would love to hear what you think about **gitclone** on [issues page](https://github.com/WindomZ/gitclone/issues).
+
+If you like it then you can put a :star: on it.
 
 ## License
 
