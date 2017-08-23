@@ -1,7 +1,6 @@
 package gitclone
 
 import (
-	"errors"
 	"fmt"
 	"path"
 	"strings"
@@ -27,7 +26,7 @@ var RootAction = func(c commander.Context) error {
 
 func rootAction(repo string, depth int) (string, error) {
 	if !validGitAddress(repo) {
-		return "", errors.New(fmt.Sprintf("repository '%v' does not exist", repo))
+		return "", fmt.Errorf("repository '%v' does not exist", repo)
 	}
 	u, err := giturls.Parse(repo)
 	if err != nil {

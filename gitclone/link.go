@@ -26,17 +26,17 @@ var LinkAction = func(c commander.Context) error {
 	return nil
 }
 
-func linkAction(f_dir string) (out string, err error) {
-	if f_dir == getCurrentDirectory() {
+func linkAction(fDir string) (out string, err error) {
+	if fDir == getCurrentDirectory() {
 		return execCommand("git", "pull")
 	}
-	f_path := path.Base(f_dir)
-	if existFile(path.Base(f_path)) {
-	} else if _, err = execCommand("cp", "-R", f_dir, "./"); err != nil {
+	fPath := path.Base(fDir)
+	if existFile(path.Base(fPath)) {
+	} else if _, err = execCommand("cp", "-R", fDir, "./"); err != nil {
 		return
 	}
-	f_dir = path.Join(getCurrentDirectory(), f_path)
-	if err = execChdir(f_dir); err != nil {
+	fDir = path.Join(getCurrentDirectory(), fPath)
+	if err = execChdir(fDir); err != nil {
 		return
 	} else if out, err = execCommand("git", "pull"); err != nil {
 		return
