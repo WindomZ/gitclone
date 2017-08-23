@@ -35,7 +35,8 @@ func main() {
 	commander.Program.
 		Command("<repo>").
 		Description("git clone repository in the 'go get' style").
-		Action(gitclone.RootAction)
+		Action(gitclone.RootAction).
+		Option("--depth=<depth>")
 
 	commander.Program.Parse()
 }
