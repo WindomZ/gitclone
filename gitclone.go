@@ -10,7 +10,7 @@ func main() {
 	commander.Program.
 		Command("gitclone").
 		Description("A cli tool, git clone repository in the `go get` style.").
-		Version("0.3.1")
+		Version("0.7.0")
 
 	// gitclone list
 	commander.Program.
